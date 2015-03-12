@@ -76,6 +76,8 @@ module Faye
       response['clientId'] = message['clientId'] if message['clientId']
       response['channel']  = message['channel']  if message['channel']
       response['error']    = message['error']    if message['error']
+      response['advice']   = message['advice']   if message['advice']
+      response['data']     = message['data']     if message['data']
 
       response['successful'] = !response['error']
       response
