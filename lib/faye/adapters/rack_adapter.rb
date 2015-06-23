@@ -182,9 +182,13 @@ module Faye
         buffer << chunk
       end
 
-      hijack.write(buffer)
-      hijack.flush
-      hijack.close_write
+      begin
+        hijack.write(buffer)
+        hijack.flush
+        hijack.close_write
+      rescue Errno::EPIPE
+        error 'Broken pipe when writing to hijack'
+      end
     end
 
     def handle_websocket(request)
