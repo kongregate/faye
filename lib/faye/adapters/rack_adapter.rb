@@ -188,6 +188,7 @@ module Faye
         hijack.close_write
       rescue Errno::EPIPE
         error 'Broken pipe when writing to hijack'
+        raise
       end
     end
 
